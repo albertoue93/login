@@ -116,7 +116,7 @@ public class loginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             //FirebaseUser user = mAuth.getCurrentUser();
                             //Iniciar DASHBOARD u otra actividad luego del SigIn Exitoso
-                            Intent dashboardActivity = new Intent(loginActivity.this, MainActivity.class);
+                            Intent dashboardActivity = new Intent(getApplicationContext(), UserActivity.class);
                             startActivity(dashboardActivity);
                             loginActivity.this.finish();
                         } else {
@@ -147,9 +147,10 @@ public class loginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         mProgressBar.dismiss();
                         //redireccionar - intent a login
-                        Intent intent = new Intent(loginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+                        loginActivity.this.finish();
                     }else {
                         Toast.makeText(getApplicationContext(),"no se pudo iniciar sesion,verifique email/password",Toast.LENGTH_LONG).show();
 
